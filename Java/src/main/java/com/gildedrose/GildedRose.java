@@ -1,5 +1,7 @@
 package com.gildedrose;
 
+import com.gildedrose.itemInfo.ItemInfo;
+
 class GildedRose {
     Item[] items;
 
@@ -36,9 +38,7 @@ class GildedRose {
                 }
             }
 
-            if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
-                items[i].sellIn--;
-            }
+            ItemInfo.makeItemInfo(items[i]).decrementSellIn();
 
             if (items[i].sellIn < 0) {
                 if (!items[i].name.equals("Aged Brie")) {

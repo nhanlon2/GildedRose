@@ -1,5 +1,5 @@
 package com.gildedrose;
-import static com.gildedrose.ItemInfo.*;
+import static com.gildedrose.itemInfo.ItemInfo.*;
 public class ItemTestMother {
 
 	public static Item ItemWithZeroSellInAndQuality(){
