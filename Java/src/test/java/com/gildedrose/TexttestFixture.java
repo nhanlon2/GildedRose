@@ -1,10 +1,23 @@
 package com.gildedrose;
 
-public class TexttestFixture {
-    public static void main(String[] args) {
-        System.out.println("OMGHAI!");
+import static org.junit.Assert.assertEquals;
 
-        Item[] items = new Item[] {
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+import org.junit.Before;
+import org.junit.Test;
+public class TexttestFixture {
+	
+	private String originalText;
+	private StringBuilder capturedText;
+	private Item[] items;
+	@Before
+	public void setUp() throws IOException {
+    	originalText = new String(Files.readAllBytes(Paths.get("src/test/resources/expected_legacy_output.txt")));
+        capturedText = new StringBuilder();
+    	items = new Item[] {
                 new Item("+5 Dexterity Vest", 10, 20), //
                 new Item("Aged Brie", 2, 0), //
                 new Item("Elixir of the Mongoose", 5, 7), //
@@ -15,23 +28,32 @@ public class TexttestFixture {
                 new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
                 // this conjured item does not work properly yet
                 new Item("Conjured Mana Cake", 3, 6) };
-
+	}
+	@Test
+	public void testLegacyTextMatchesCurrent() {
         GildedRose app = new GildedRose(items);
-
-        int days = 2;
-        if (args.length > 0) {
-            days = Integer.parseInt(args[0]) + 1;
-        }
-
+        String [] originalTextArr = originalText.split("\n");
+        int days = 7;
+        int originalLine = 0;
         for (int i = 0; i < days; i++) {
-            System.out.println("-------- day " + i + " --------");
-            System.out.println("name, sellIn, quality");
+        	String day = "-------- day " + i + " --------\n";
+            capturedText.append(day);
+            assertEquals(originalTextArr[originalLine++]+"\n",day);
+            String header = "name, sellIn, quality\n";
+            capturedText.append(header);
+            assertEquals(originalTextArr[originalLine++]+"\n",header);
             for (Item item : items) {
-                System.out.println(item);
+            	String thisItem = item+"\n";
+            	assertEquals(originalTextArr[originalLine++]+"\n",thisItem);
+                capturedText.append(thisItem);
             }
-            System.out.println();
+            capturedText.append("\n");
+            originalLine++;
             app.updateQuality();
         }
-    }
+        System.out.println(capturedText);
+        assertEquals(originalText,capturedText.toString());
+        
+	}
 
 }
