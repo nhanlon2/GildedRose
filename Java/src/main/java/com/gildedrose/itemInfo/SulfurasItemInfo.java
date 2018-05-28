@@ -4,15 +4,20 @@ import com.gildedrose.Item;
 
 public class SulfurasItemInfo extends ItemInfo {
 
-	 SulfurasItemInfo(Item item) {
+	SulfurasItemInfo(Item item) {
 		super(item);
 	}
-	 
-	 @Override
-	public void decrementSellIn() {
-		 return;
+
+	SulfurasItemInfo(Item item, boolean conjured) {
+		super(item, conjured);
 	}
-	 @Override
+
+	@Override
+	public void decrementSellIn() {
+		return;
+	}
+
+	@Override
 	public void modifyQuality() {
 		return;
 	}

@@ -8,6 +8,10 @@ public class BackStagePassItemInfo extends ItemInfo {
 		super(item);
 	}
 
+	protected BackStagePassItemInfo(Item item, boolean conjured) {
+		super(item, conjured);
+	}
+
 	@Override
 	public void modifyQuality() {
 		if (item.sellIn == 0) {

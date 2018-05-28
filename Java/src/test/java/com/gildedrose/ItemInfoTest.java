@@ -69,6 +69,14 @@ public class ItemInfoTest {
 		ItemInfo.makeItemInfo(item).modifyQuality();
 		assertEquals(quality - 1, item.quality);
 	}
+	
+	@Test
+	public void shouldDecreaseQualityTwiceAsFastWhenGenericConjuredItem() {
+		Item item = ConjuredItemWithNoSpecialValues();
+		item.quality = 10;
+		ItemInfo.makeItemInfo(item).modifyQuality();
+		assertEquals(8, item.quality);
+	}
 
 	@Test
 	public void shouldDecreaseSellInWhenGenericItem() {

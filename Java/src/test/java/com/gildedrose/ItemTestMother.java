@@ -14,6 +14,10 @@ public class ItemTestMother {
 		return new Item("item",2,2);
 	}
 	
+	public static Item ConjuredItemWithNoSpecialValues(){
+		return new Item("Conjured item",2,2);
+	}
+	
 	public static Item Sulfuras(){
 		return new Item(SULFURAS,1,80);
 	}

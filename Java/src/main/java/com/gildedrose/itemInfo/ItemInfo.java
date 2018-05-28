@@ -10,6 +10,10 @@ public class ItemInfo {
 	public static boolean isBackStagePass(Item item) {
 		return item.name.indexOf(BACKSTAGE_PASSES) != -1;
 	}
+	
+	public static boolean isConjured(Item item) {
+		return item.name.indexOf("Conjured") !=-1;
+	}
 
 	public static boolean isSulfuras(Item item) {
 		return item.name.equals(SULFURAS);
@@ -21,21 +25,27 @@ public class ItemInfo {
 
 	public static ItemInfo makeItemInfo(Item item) {
 		if (isSulfuras(item)) {
-			return new SulfurasItemInfo(item);
+			return new SulfurasItemInfo(item, isConjured(item));
 		} else if (isAgedBrie(item)) {
-			return new AgedBrieItemInfo(item);
+			return new AgedBrieItemInfo(item, isConjured(item));
 		} else if(isBackStagePass(item)){
-			return new BackStagePassItemInfo(item);
+			return new BackStagePassItemInfo(item, isConjured(item));
 		}
 		else {
-			return new ItemInfo(item);
+			return new ItemInfo(item,isConjured(item));
 		}
 	}
 
 	protected Item item;
+	protected boolean isConjured;
 
 	protected ItemInfo(Item item) {
+		this(item,false);
+	}
+	
+	protected ItemInfo(Item item, boolean conjured) {
 		this.item = item;
+		this.isConjured=conjured;
 	}
 
 	public void decrementSellIn() {
