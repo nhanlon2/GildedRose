@@ -10,7 +10,11 @@ public class AgedBrieItemInfo extends ItemInfo {
 	
 	@Override
 	public void modifyQuality() {
-		item.quality++;
+		incrementQuality();
+		decrementSellIn();
+		if(item.sellIn<0){
+			incrementQuality();
+		}
 	}
 
 }

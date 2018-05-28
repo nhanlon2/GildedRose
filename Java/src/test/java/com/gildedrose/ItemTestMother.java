@@ -23,7 +23,7 @@ public class ItemTestMother {
 	}
 	
 	public static Item BackStagePasses(){
-		return new Item(BACKSTAGE_PASSES,1,1);
+		return new Item(BACKSTAGE_PASSES,11,1);
 	}
 	
 }
