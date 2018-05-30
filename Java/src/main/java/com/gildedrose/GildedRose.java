@@ -1,6 +1,6 @@
 package com.gildedrose;
 
-import com.gildedrose.itemInfo.ItemInfo;
+import com.gildedrose.iteminfo.ItemWrapper;
 
 class GildedRose {
     Item[] items;
@@ -11,7 +11,7 @@ class GildedRose {
     
     public void updateQuality() {
         for (int i = 0; i < items.length; i++) {
-        	ItemInfo.makeItemInfo(items[i]).modifyQuality();
+        	ItemWrapper.makeItemWrapper(items[i]).modifyQuality();
         }
     }
 }
